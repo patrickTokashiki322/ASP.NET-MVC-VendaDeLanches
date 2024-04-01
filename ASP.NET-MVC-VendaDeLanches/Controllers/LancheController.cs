@@ -26,18 +26,7 @@ namespace ASP.NET_MVC_VendaDeLanches.Controllers
             }
             else
             {
-                if(string.Equals("Normal", categoria, StringComparison.OrdinalIgnoreCase))
-                {
-                    lanches = _lancheRepository.Lanches
-                        .Where(l => l.Categoria.CategoriaNome.Equals("Normal"))
-                        .OrderBy(l => l.Nome);
-                }
-                else
-                {
-                    lanches = _lancheRepository.Lanches
-                        .Where(l => l.Categoria.CategoriaNome.Equals("Natural"))
-                        .OrderBy(l => l.Nome);
-                }
+                lanches = _lancheRepository.Lanches.Where(c => c.Categoria.CategoriaNome.Equals(categoria));
 
                 categoriaAtual = categoria;
             }
@@ -49,6 +38,13 @@ namespace ASP.NET_MVC_VendaDeLanches.Controllers
             };
 
             return View(lanchesListViewModel);
+        }
+
+        public IActionResult Details(int lancheId)
+        {
+            var lanche = _lancheRepository.Lanches.FirstOrDefault(l => l.LancheId == lancheId);
+
+            return View(lanche);
         }
     }
 }
