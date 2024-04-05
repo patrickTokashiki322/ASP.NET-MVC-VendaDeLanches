@@ -2,6 +2,7 @@
 using ASP.NET_MVC_VendaDeLanches.Models;
 using ASP.NET_MVC_VendaDeLanches.Repositories;
 using ASP.NET_MVC_VendaDeLanches.Repositories.Interfaces;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace ASP.NET_MVC_VendaDeLanches;
@@ -19,6 +20,20 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+        services.AddIdentity<IdentityUser, IdentityRole>()
+            .AddEntityFrameworkStores<AppDbContext>()
+            .AddDefaultTokenProviders();
+
+        services.Configure<IdentityOptions>(options =>
+        {
+            options.Password.RequireDigit = true;
+            options.Password.RequireLowercase = true;
+            options.Password.RequireNonAlphanumeric = true;
+            options.Password.RequireUppercase = true;
+            options.Password.RequiredLength = 8;
+            options.Password.RequiredUniqueChars = 1;
+        });
 
         services.AddTransient<ILancheRepository, LancheRepository>();
         services.AddTransient<ICategoriaRepository, CategoriaRepository>();
@@ -51,6 +66,9 @@ public class Startup
         app.UseRouting();
 
         app.UseSession();
+
+        app.UseAuthentication();
+        app.UseAuthorization();
 
         app.UseAuthorization();
 
