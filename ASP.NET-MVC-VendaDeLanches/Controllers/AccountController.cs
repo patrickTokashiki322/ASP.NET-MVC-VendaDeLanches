@@ -38,14 +38,14 @@ namespace ASP.NET_MVC_VendaDeLanches.Controllers
             var user = await _userManager.FindByNameAsync(loginVM.UserName);
 
             // Se o usuário não for nulo
-            if(user != null)
+            if (user != null)
             {
                 // verificaremos se a senha é a correta, e verificar se o cookie de entrada deve persistir (primeiro false), e informar 
                 // se o login falhar se a conta deve ser bloqueada (segundo false)
                 var result = await _signInManager.PasswordSignInAsync(user, loginVM.Password, false, false);
 
                 // Se a combinação de usuário e senha for correta	
-                if(result.Succeeded)
+                if (result.Succeeded)
                 {
                     // Se a returnUrl for nulo ou vazia direcionaremos para a página Index.
                     if (string.IsNullOrEmpty(loginVM.ReturnUrl))
@@ -54,7 +54,8 @@ namespace ASP.NET_MVC_VendaDeLanches.Controllers
                     }
 
                     // Se a returnUrl não for nula ou vazia, direcionaremos para a returnUrl informada
-                    return View(loginVM.ReturnUrl);
+                    //return View(loginVM.ReturnUrl);
+                    return Redirect(loginVM.ReturnUrl);
                 }
             }
 
@@ -87,6 +88,9 @@ namespace ASP.NET_MVC_VendaDeLanches.Controllers
                 // Se o processo ocorrer com sucesso
                 if (result.Succeeded)
                 {
+                    // Adicionamos o usuário ao perfil Member
+                    await _userManager.AddToRoleAsync(user, "Member");
+
                     // Retornaremos o usuário para a view Login da action Account
                     return RedirectToAction("Login", "Account");
                 }
@@ -117,6 +121,11 @@ namespace ASP.NET_MVC_VendaDeLanches.Controllers
 
             // Retornaremos o usuário para a página principal
             return RedirectToAction("Index", "Home");
+        }
+
+        public IActionResult AccessDenied()
+        {
+            return View();
         }
     }
 }

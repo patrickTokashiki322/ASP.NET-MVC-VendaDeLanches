@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ASP.NET_MVC_VendaDeLanches.Controllers
+namespace ASP.NET_MVC_VendaDeLanches.Areas.Admin.Controllers
 {
-    public class ContatoController : Controller
+    [Area("Admin")]
+    [Authorize(Roles = "Admin")]
+    public class AdminController : Controller
     {
         public IActionResult Index()
         {

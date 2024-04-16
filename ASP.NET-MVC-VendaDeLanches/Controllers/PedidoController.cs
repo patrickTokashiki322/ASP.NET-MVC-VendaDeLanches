@@ -1,5 +1,6 @@
 ﻿using ASP.NET_MVC_VendaDeLanches.Models;
 using ASP.NET_MVC_VendaDeLanches.Repositories.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ASP.NET_MVC_VendaDeLanches.Controllers
@@ -15,12 +16,14 @@ namespace ASP.NET_MVC_VendaDeLanches.Controllers
             _carrinhoCompra = carrinhoCompra;
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult Checkout()
         {
             return View();
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult Checkout(Pedido pedido)
         {

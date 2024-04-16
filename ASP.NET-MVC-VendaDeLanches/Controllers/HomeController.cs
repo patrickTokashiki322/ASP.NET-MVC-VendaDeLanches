@@ -2,6 +2,7 @@
 using ASP.NET_MVC_VendaDeLanches.Models;
 using ASP.NET_MVC_VendaDeLanches.Repositories.Interfaces;
 using ASP.NET_MVC_VendaDeLanches.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
