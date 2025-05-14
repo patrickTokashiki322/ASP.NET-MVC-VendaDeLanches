@@ -24,7 +24,7 @@ namespace ASP.NET_MVC_VendaDeLanches.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("ASP.NET_MVC_VendaDeLanches.Models.CarrinhoCompraItem", b =>
+            modelBuilder.Entity("ASP.NET-MVC-VendaDeLanches.Models.CarrinhoCompraItem", b =>
                 {
                     b.Property<int>("CarrinhoCompraItemId")
                         .ValueGeneratedOnAdd()
@@ -49,7 +49,7 @@ namespace ASP.NET_MVC_VendaDeLanches.Migrations
                     b.ToTable("CarrinhoCompraItens");
                 });
 
-            modelBuilder.Entity("ASP.NET_MVC_VendaDeLanches.Models.Categoria", b =>
+            modelBuilder.Entity("ASP.NET-MVC-VendaDeLanches.Models.Categoria", b =>
                 {
                     b.Property<int>("CategoriaId")
                         .ValueGeneratedOnAdd()
@@ -72,7 +72,7 @@ namespace ASP.NET_MVC_VendaDeLanches.Migrations
                     b.ToTable("Categorias");
                 });
 
-            modelBuilder.Entity("ASP.NET_MVC_VendaDeLanches.Models.Lanche", b =>
+            modelBuilder.Entity("ASP.NET-MVC-VendaDeLanches.Models.Lanche", b =>
                 {
                     b.Property<int>("LancheId")
                         .ValueGeneratedOnAdd()
@@ -122,18 +122,18 @@ namespace ASP.NET_MVC_VendaDeLanches.Migrations
                     b.ToTable("Lanches");
                 });
 
-            modelBuilder.Entity("ASP.NET_MVC_VendaDeLanches.Models.CarrinhoCompraItem", b =>
+            modelBuilder.Entity("ASP.NET-MVC-VendaDeLanches.Models.CarrinhoCompraItem", b =>
                 {
-                    b.HasOne("ASP.NET_MVC_VendaDeLanches.Models.Lanche", "Lanche")
+                    b.HasOne("ASP.NET-MVC-VendaDeLanches.Models.Lanche", "Lanche")
                         .WithMany()
                         .HasForeignKey("LancheId");
 
                     b.Navigation("Lanche");
                 });
 
-            modelBuilder.Entity("ASP.NET_MVC_VendaDeLanches.Models.Lanche", b =>
+            modelBuilder.Entity("ASP.NET-MVC-VendaDeLanches.Models.Lanche", b =>
                 {
-                    b.HasOne("ASP.NET_MVC_VendaDeLanches.Models.Categoria", "Categoria")
+                    b.HasOne("ASP.NET-MVC-VendaDeLanches.Models.Categoria", "Categoria")
                         .WithMany("Lanches")
                         .HasForeignKey("CategoriaId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -142,7 +142,7 @@ namespace ASP.NET_MVC_VendaDeLanches.Migrations
                     b.Navigation("Categoria");
                 });
 
-            modelBuilder.Entity("ASP.NET_MVC_VendaDeLanches.Models.Categoria", b =>
+            modelBuilder.Entity("ASP.NET-MVC-VendaDeLanches.Models.Categoria", b =>
                 {
                     b.Navigation("Lanches");
                 });

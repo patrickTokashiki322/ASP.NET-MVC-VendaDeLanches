@@ -24,7 +24,7 @@ namespace ASP.NET_MVC_VendaDeLanches.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("ASP.NET_MVC_VendaDeLanches.Models.CarrinhoCompraItem", b =>
+            modelBuilder.Entity("ASP.NET-MVC-VendaDeLanches.Models.CarrinhoCompraItem", b =>
                 {
                     b.Property<int>("CarrinhoCompraItemId")
                         .ValueGeneratedOnAdd()
@@ -49,7 +49,7 @@ namespace ASP.NET_MVC_VendaDeLanches.Migrations
                     b.ToTable("CarrinhoCompraItens");
                 });
 
-            modelBuilder.Entity("ASP.NET_MVC_VendaDeLanches.Models.Categoria", b =>
+            modelBuilder.Entity("ASP.NET-MVC-VendaDeLanches.Models.Categoria", b =>
                 {
                     b.Property<int>("CategoriaId")
                         .ValueGeneratedOnAdd()
@@ -72,7 +72,7 @@ namespace ASP.NET_MVC_VendaDeLanches.Migrations
                     b.ToTable("Categorias");
                 });
 
-            modelBuilder.Entity("ASP.NET_MVC_VendaDeLanches.Models.Lanche", b =>
+            modelBuilder.Entity("ASP.NET-MVC-VendaDeLanches.Models.Lanche", b =>
                 {
                     b.Property<int>("LancheId")
                         .ValueGeneratedOnAdd()
@@ -122,7 +122,7 @@ namespace ASP.NET_MVC_VendaDeLanches.Migrations
                     b.ToTable("Lanches");
                 });
 
-            modelBuilder.Entity("ASP.NET_MVC_VendaDeLanches.Models.Pedido", b =>
+            modelBuilder.Entity("ASP.NET-MVC-VendaDeLanches.Models.Pedido", b =>
                 {
                     b.Property<int>("PedidoId")
                         .ValueGeneratedOnAdd()
@@ -189,7 +189,7 @@ namespace ASP.NET_MVC_VendaDeLanches.Migrations
                     b.ToTable("Pedidos");
                 });
 
-            modelBuilder.Entity("ASP.NET_MVC_VendaDeLanches.Models.PedidoDetalhe", b =>
+            modelBuilder.Entity("ASP.NET-MVC-VendaDeLanches.Models.PedidoDetalhe", b =>
                 {
                     b.Property<int>("PedidoDetalheId")
                         .ValueGeneratedOnAdd()
@@ -218,18 +218,18 @@ namespace ASP.NET_MVC_VendaDeLanches.Migrations
                     b.ToTable("PedidoDetalhes");
                 });
 
-            modelBuilder.Entity("ASP.NET_MVC_VendaDeLanches.Models.CarrinhoCompraItem", b =>
+            modelBuilder.Entity("ASP.NET-MVC-VendaDeLanches.Models.CarrinhoCompraItem", b =>
                 {
-                    b.HasOne("ASP.NET_MVC_VendaDeLanches.Models.Lanche", "Lanche")
+                    b.HasOne("ASP.NET-MVC-VendaDeLanches.Models.Lanche", "Lanche")
                         .WithMany()
                         .HasForeignKey("LancheId");
 
                     b.Navigation("Lanche");
                 });
 
-            modelBuilder.Entity("ASP.NET_MVC_VendaDeLanches.Models.Lanche", b =>
+            modelBuilder.Entity("ASP.NET-MVC-VendaDeLanches.Models.Lanche", b =>
                 {
-                    b.HasOne("ASP.NET_MVC_VendaDeLanches.Models.Categoria", "Categoria")
+                    b.HasOne("ASP.NET-MVC-VendaDeLanches.Models.Categoria", "Categoria")
                         .WithMany("Lanches")
                         .HasForeignKey("CategoriaId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -238,15 +238,15 @@ namespace ASP.NET_MVC_VendaDeLanches.Migrations
                     b.Navigation("Categoria");
                 });
 
-            modelBuilder.Entity("ASP.NET_MVC_VendaDeLanches.Models.PedidoDetalhe", b =>
+            modelBuilder.Entity("ASP.NET-MVC-VendaDeLanches.Models.PedidoDetalhe", b =>
                 {
-                    b.HasOne("ASP.NET_MVC_VendaDeLanches.Models.Lanche", "Lanche")
+                    b.HasOne("ASP.NET-MVC-VendaDeLanches.Models.Lanche", "Lanche")
                         .WithMany()
                         .HasForeignKey("LancheId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ASP.NET_MVC_VendaDeLanches.Models.Pedido", "Pedido")
+                    b.HasOne("ASP.NET-MVC-VendaDeLanches.Models.Pedido", "Pedido")
                         .WithMany("PedidoItens")
                         .HasForeignKey("PedidoId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -257,12 +257,12 @@ namespace ASP.NET_MVC_VendaDeLanches.Migrations
                     b.Navigation("Pedido");
                 });
 
-            modelBuilder.Entity("ASP.NET_MVC_VendaDeLanches.Models.Categoria", b =>
+            modelBuilder.Entity("ASP.NET-MVC-VendaDeLanches.Models.Categoria", b =>
                 {
                     b.Navigation("Lanches");
                 });
 
-            modelBuilder.Entity("ASP.NET_MVC_VendaDeLanches.Models.Pedido", b =>
+            modelBuilder.Entity("ASP.NET-MVC-VendaDeLanches.Models.Pedido", b =>
                 {
                     b.Navigation("PedidoItens");
                 });
